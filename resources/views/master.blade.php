@@ -35,8 +35,9 @@
     <script src="{{ asset('theme/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('theme/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/php-email-form/validate.js') }}"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Template Main JS File -->
     <script src="{{ asset('theme/js/main.js') }}"></script>
+    
 </body>
 </html>
