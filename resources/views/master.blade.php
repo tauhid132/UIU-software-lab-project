@@ -22,10 +22,13 @@
     
     <!-- Template Main CSS File -->
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    
+    <div id="app">
     @yield('main-body')
+    </div>
     
     <script src="{{ asset('theme/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -17,7 +17,7 @@
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
             <li class="nav-ite pe-3">
-                <button class="btn btn-success">Register/Login</button>
+                <a href="{{ route('login') }}"><button class="btn btn-success">Register/Login</button></a>
             </li>
         </ul>
     </nav>

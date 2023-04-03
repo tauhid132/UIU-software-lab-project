@@ -51,10 +51,14 @@
                                     </div>
                                     
                                     <div class="col-12">
+                                        <div class="float-end">
+                                            <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a>
+                                        </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
                                             <label class="form-check-label" for="rememberMe">Remember me</label>
                                         </div>
+                                       
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit">Login</button>
@@ -74,5 +78,5 @@
         </section>
         
     </div>
-</main><!-- End #main -->
+</main>
 @endsection
