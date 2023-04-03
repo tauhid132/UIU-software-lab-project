@@ -28,4 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/calories-calculator', [App\Http\Controllers\PageController::class, 'viewCaloriesCalculator'])->name('viewCaloriesCalculator');
+Route::get('/calories-consumption-calculator', [App\Http\Controllers\PageController::class, 'viewCaloriesConsumptionCalculator'])->name('viewCaloriesConsumptionCalculator');
+Route::get('/getFoods', [App\Http\Controllers\PageController::class, 'getFoods'])->name('getFoods');
 require __DIR__.'/auth.php';
