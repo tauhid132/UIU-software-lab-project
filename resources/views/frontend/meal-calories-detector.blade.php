@@ -12,16 +12,13 @@
     <div class="section" style="margin-top:150px">
         <div class="col-md-12">
             <div class="card">
-                
                 <div class="card-header">
                     <h4>Calories Calculator</h4>
                     <button onclick="addnew()" class="btn btn-primary btn-sm float-end">Add</button>
                 </div>
-                <form method="post" action="{{ route('calculateCalories') }}">
-                    @csrf
                 <div class="card-body" id="meals">
                     <div class="row mt-2">
-                        <div class="col-md-3 mb-2">
+                        <div class="col-md-2 mb-2">
                             <label for="inputName5" class="form-label">Choose Meal</label>
                             <select class="form-select">
                                 <option value="Male" selected="">Breakfast</option>
@@ -32,29 +29,40 @@
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputName5" class="form-label">Food</label>
-                            <select class="form-select" name="food[]" id="food_name">
+                            <select class="form-select" id="food_name">
                                 @foreach ($foods as $f)
                                     <option value="{{ $f->food_name }}">{{ $f->food_name }}</option>
                                 @endforeach
                                 
                             </select>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-1 mb-2">
                             <label for="inputName5" class="form-label">Unit</label>
-                            <select class="form-select" id="unit" name="unit[]">
-                                <option value="g" selected="">gm</option>
-                                <option value="pcs">Pcs</option>
+                            <select class="form-select" id="unit">
+                                <option value="gm" selected="">gm</option>
+                                <option value="">Pcs</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputEmail5" class="form-label">Amount</label>
-                            <input type="text" name="amount[]" class="form-control" id="amount">
+                            <input type="text"  class="form-control" id="amount">
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-1 mb-2">
                             <label for="inputEmail5" class="form-label">Calories</label>
                             <input type="text" id="calories"  class="form-control" id="inputEmail5">
                         </div>
-                        
+                        <div class="col-md-1 mb-2">
+                            <label for="inputEmail5" class="form-label">Carbs</label>
+                            <input type="text" id="carbs" class="form-control" id="inputEmail5">
+                        </div>
+                        <div class="col-md-1 mb-2">
+                            <label for="inputEmail5" class="form-label">Fat</label>
+                            <input type="text" id="fat"  class="form-control" id="inputEmail5">
+                        </div>
+                        <div class="col-md-1 mb-2">
+                            <label for="inputEmail5" class="form-label">Protein</label>
+                            <input type="text" id="protien" class="form-control" id="inputEmail5">
+                        </div>
                         <div class="col-md-1 mb-2">
                             <label for="inputEmail5" class="form-label">Action</label><br>
                             <i class="fa fa-trash text-danger"></i>
@@ -64,7 +72,7 @@
                     
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Calculate</button>
+                    <button onclick="calculate()" class="btn btn-primary float-end">Calculate</button>
                 </div>
             </div>
         </div>
@@ -110,7 +118,7 @@
         var container = document.getElementById('meals');
         var div = document.createElement("div");
         div.innerHTML += '<div class="row">'+
-                        '<div class="col-md-3 mb-2">'+
+                        '<div class="col-md-2 mb-2">'+
                         '<label for="inputName5" class="form-label">Choose Meal</label>'+
                         '<select class="form-select">'+
                             '<option value="Male" selected="">Breakfast</option>'+
@@ -121,29 +129,40 @@
                     '</div>'+
                     '<div class="col-md-2 mb-2">'+
                         '<label for="inputName5" class="form-label">Food</label>'+
-                        '<select class="form-select" name="food[]" id="food_name">'+
+                        '<select class="form-select" id="food_name">'+
                             '@foreach ($foods as $f)'+
                                 '<option value="{{ $f->food_name }}">{{ $f->food_name }}</option>'+
                             '@endforeach'+
                             
                         '</select>'+
                     '</div>'+
-                    '<div class="col-md-2 mb-2">'+
+                    '<div class="col-md-1 mb-2">'+
                         '<label for="inputName5" class="form-label">Unit</label>'+
-                        '<select class="form-select" name="unit[]" id="unit">'+
-                            '<option value="g" selected="">gm</option>'+
-                            '<option value="pcs">Pcs</option>'+
+                        '<select class="form-select" id="unit">'+
+                            '<option value="gm" selected="">gm</option>'+
+                            '<option value="">Pcs</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-md-2 mb-2">'+
                         '<label for="inputEmail5" class="form-label">Amount</label>'+
-                        '<input type="text" name="amount[]"  class="form-control" id="amount">'+
+                        '<input type="text"  class="form-control" id="amount">'+
                     '</div>'+
-                    '<div class="col-md-2 mb-2">'+
+                    '<div class="col-md-1 mb-2">'+
                         '<label for="inputEmail5" class="form-label">Calories</label>'+
                         '<input type="text" id="calories"  class="form-control" id="inputEmail5">'+
                     '</div>'+
-                   
+                    '<div class="col-md-1 mb-2">'+
+                        '<label for="inputEmail5" class="form-label">Carbs</label>'+
+                        '<input type="text" id="carbs" class="form-control" id="inputEmail5">'+
+                    '</div>'+
+                    '<div class="col-md-1 mb-2">'+
+                        '<label for="inputEmail5" class="form-label">Fat</label>'+
+                        '<input type="text" id="fat"  class="form-control" id="inputEmail5">'+
+                    '</div>'+
+                    '<div class="col-md-1 mb-2">'+
+                        '<label for="inputEmail5" class="form-label">Protein</label>'+
+                        '<input type="text" id="protien" class="form-control" id="inputEmail5">'+
+                    '</div>'+
                     '<div class="col-md-1 mb-2">'+
                         '<label for="inputEmail5" class="form-label">Action</label><br>'+
                         '<i class="fa fa-trash text-danger"></i>'+
