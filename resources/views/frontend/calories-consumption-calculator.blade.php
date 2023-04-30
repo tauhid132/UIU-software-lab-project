@@ -12,6 +12,11 @@
     <div class="section" style="margin-top:150px">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-body p-2">
+                    <h3>Total Calories Consumption: {{ $total_calories }}</h3>
+                </div>
+            </div>
+            <div class="card">
                 
                 <div class="card-header">
                     <h4>Calories Calculator</h4>
@@ -20,21 +25,22 @@
                 <form method="post" action="{{ route('calculateCalories') }}">
                     @csrf
                 <div class="card-body" id="meals">
+                    @foreach ($meals as $meal )
                     <div class="row mt-2">
                         <div class="col-md-3 mb-2">
                             <label for="inputName5" class="form-label">Choose Meal</label>
-                            <select class="form-select">
-                                <option value="Male" selected="">Breakfast</option>
-                                <option value="Female">Lunch</option>
-                                <option value="Female">Snack</option>
-                                <option value="Female">Dinner</option>
+                            <select class="form-select" name="meal[]">
+                                <option {{ $meal->meal == 'Breakfast' ? 'selected' : '' }} value="Breakfast" selected="">Breakfast</option>
+                                <option {{ $meal->meal == 'Lunch' ? 'selected' : '' }} value="Lunch">Lunch</option>
+                                <option {{ $meal->meal == 'Snack' ? 'selected' : '' }} value="Snack">Snack</option>
+                                <option {{ $meal->meal == 'Dinner' ? 'selected' : '' }} value="Dinner">Dinner</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputName5" class="form-label">Food</label>
                             <select class="form-select" name="food[]" id="food_name">
                                 @foreach ($foods as $f)
-                                    <option value="{{ $f->food_name }}">{{ $f->food_name }}</option>
+                                    <option {{ $meal->food == $f->food_name ? 'selected' : '' }} value="{{ $f->food_name }}">{{ $f->food_name }}</option>
                                 @endforeach
                                 
                             </select>
@@ -42,25 +48,27 @@
                         <div class="col-md-2 mb-2">
                             <label for="inputName5" class="form-label">Unit</label>
                             <select class="form-select" id="unit" name="unit[]">
-                                <option value="g" selected="">gm</option>
-                                <option value="pcs">Pcs</option>
+                                <option {{ $meal->unit == 'g' ? 'selected' : '' }}  value="g" selected="">gm</option>
+                                <option {{ $meal->unit == 'pcs' ? 'selected' : '' }} value="pcs">Pcs</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputEmail5" class="form-label">Amount</label>
-                            <input type="text" name="amount[]" class="form-control" id="amount">
+                            <input type="text" name="amount[]" value="{{ $meal->amount }}" class="form-control" id="amount">
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputEmail5" class="form-label">Calories</label>
-                            <input type="text" id="calories"  class="form-control" id="inputEmail5">
+                            <input type="text" id="calories" value="{{ $meal->calories }}"   class="form-control" id="inputEmail5">
                         </div>
                         
                         <div class="col-md-1 mb-2">
                             <label for="inputEmail5" class="form-label">Action</label><br>
-                            <i class="fa fa-trash text-danger"></i>
+                            <a><i class="fa fa-trash text-danger"></i></a>
                         </div>
                         
-                    </div>
+                    </div> 
+                    @endforeach
+                    
                     
                 </div>
                 <div class="card-footer">
@@ -112,11 +120,11 @@
         div.innerHTML += '<div class="row">'+
                         '<div class="col-md-3 mb-2">'+
                         '<label for="inputName5" class="form-label">Choose Meal</label>'+
-                        '<select class="form-select">'+
-                            '<option value="Male" selected="">Breakfast</option>'+
-                            '<option value="Female">Lunch</option>'+
-                            '<option value="Female">Snack</option>'+
-                            '<option value="Female">Dinner</option>'+
+                        '<select class="form-select" name="meal[]">'+
+                            '<option value="Breakfast" selected="">Breakfast</option>'+
+                            '<option value="Lunch">Lunch</option>'+
+                            '<option value="Snack">Snack</option>'+
+                            '<option value="Dinner">Dinner</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-md-2 mb-2">'+
