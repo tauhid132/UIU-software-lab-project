@@ -2,7 +2,7 @@
 @section('title','Health Tracker')
 @section('main-body')
 @if(Auth::check())
-@include('frontend.includes.loggedin-header')
+@include('frontend.includes.loggedin-header-doctor')
 @else
 @include('frontend.includes.header')
 @endif
@@ -15,13 +15,13 @@
         <div class="col-xxl-6 col-md-6">
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h5 class="card-title">Calories <span>| Required</span></h5>
+              <h5 class="card-title">Total Patients</h5>
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-lightning-charge"></i>
+                  <i class="ri  ri-file-user-fill"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{ Auth::user()->calories_required }}</h6>
+                  <h6>{{ $total_patients }}</h6>
                 </div>
               </div>
             </div>
@@ -38,7 +38,7 @@
                   <i class="bi bi-lightning-charge"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{ $consuming }}</h6>
+                  <h6>0</h6>
                 </div>
               </div>
             </div>

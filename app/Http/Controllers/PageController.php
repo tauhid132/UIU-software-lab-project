@@ -76,6 +76,11 @@ class PageController extends Controller
         Meal::find($id)->delete();
         return back();
     }
+    public function viewDocDash(){
+        return view('doctor-dahboard',[
+            'total_patients' => User::count(),
+        ]);
+    }
         
     }
     

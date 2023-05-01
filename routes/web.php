@@ -35,4 +35,6 @@ Route::get('/calories-consumption-calculator', [App\Http\Controllers\PageControl
 Route::post('/calories-consumption-calculator', [App\Http\Controllers\PageController::class, 'calculateCalories'])->name('calculateCalories');
 Route::get('/delete-meal/{id}', [App\Http\Controllers\PageController::class, 'deleteMeal'])->name('deleteMeal');
 Route::get('/getFoods', [App\Http\Controllers\PageController::class, 'getFoods'])->name('getFoods');
+
+Route::get('/nutritionist/my-dashboard', [App\Http\Controllers\PageController::class, 'viewDocDash'])->name('viewDocDash');
 require __DIR__.'/auth.php';
