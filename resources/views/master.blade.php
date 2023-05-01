@@ -29,7 +29,7 @@
     <div id="app">
         @yield('main-body')
     </div>
-    @vite(['resources/js/app.js'])
+    {{-- @vite(['resources/js/app.js']) --}}
     <script src="{{ asset('theme/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/chart.js/chart.umd.js') }}"></script>
@@ -41,36 +41,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Template Main JS File -->
     <script src="{{ asset('theme/js/main.js') }}"></script>
+    @yield('page-script')
     
-    <script>
-       
-        function calculate(){
-            
-            var food = document.getElementById("food_name").value
-            var unit = document.getElementById("unit").value
-            var amount = document.getElementById("amount").value
-            alert(food)
-            var query = amount+''+unit+' '+food
-            $.ajax({
-                method: 'GET',
-                url: 'https://api.api-ninjas.com/v1/nutrition?query=' + query,
-                headers: { 'X-Api-Key': 'I3sov+4Ec2CrXQK9mauAQQ==PzCNNH5swQ7U6yde'},
-                contentType: 'application/json',
-                success: function(result) {
-                    document.getElementById("calories").value = result[0].calories
-                    document.getElementById("carbs").value = result[0].carbohydrates_total_g
-                    document.getElementById("fat").value = result[0].fat_total_g
-                    document.getElementById("protien").value = result[0].protein_g
-
-                    console.log(result);
-                },
-                error: function ajaxError(jqXHR) {
-                    console.error('Error: ', jqXHR.responseText);
-                }
-                
-            });
-            
-        }
-    </script>
+   
 </body>
 </html>

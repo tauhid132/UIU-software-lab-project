@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/calories-calculator', [App\Http\Controllers\PageController::class, 'viewCaloriesCalculator'])->name('viewCaloriesCalculator');
+Route::get('/cal', [App\Http\Controllers\PageController::class, 'calCal'])->name('calCal');
+Route::post('/calories-calculator/count', [App\Http\Controllers\PageController::class, 'countCalories'])->name('countCalories');
 Route::get('/calories-consumption-calculator', [App\Http\Controllers\PageController::class, 'viewCaloriesConsumptionCalculator'])->name('viewCaloriesConsumptionCalculator');
+Route::post('/calories-consumption-calculator', [App\Http\Controllers\PageController::class, 'calculateCalories'])->name('calculateCalories');
 Route::get('/getFoods', [App\Http\Controllers\PageController::class, 'getFoods'])->name('getFoods');
 require __DIR__.'/auth.php';
