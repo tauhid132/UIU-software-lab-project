@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Food;
 use App\Models\Meal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -31,11 +32,14 @@ class PageController extends Controller
             $bmr = 665.1 + (9.563 * $request->weight) + (1.85 * $request->height*30.48) - (4.676 * $request->age);
         }
         $bmr = $bmr * $request->activity_level;
-        dd($bmr);
+        $user = User::find(Auth::user()->id);
+        $user->update([
+            'calories_required' => $bmr
+        ]);
+        
     }
     
     public function calculateCalories(Request $request){
-        // dd($request);
         $total_calories = 0;
         for($i=0; $i<sizeof($request->food); $i++){
             $meal = Meal::where('meal', $request->meal[$i])->where('food',$request->food[$i])->where('unit',$request->unit[$i])->where('user_id',Auth::user()->id)->first();
@@ -63,5 +67,15 @@ class PageController extends Controller
             $data = $response->object();
             return $data[0]->calories;
         }
+    public function viewDashboard(){
+        return view('dashboard',[
+            'consuming' => Meal::where('user_id',Auth::user()->id)->sum('calories')
+        ]);
+    }  
+    public function deleteMeal($id){
+        Meal::find($id)->delete();
+        return back();
+    }
+        
     }
     

@@ -6,15 +6,11 @@
         <img src="{{ asset('images/logo.jpeg') }}" alt="">
         <span class="d-none d-lg-block">Health Tracker</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="{{ route('viewDashboard') }}" class="nav-link px-2 ">My Dashboard</a></li>
+  </ul>
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -27,10 +23,10 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          {{-- <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+          </a><!-- End Notification Icon --> --}}
 
           {{-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
@@ -102,10 +98,10 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          {{-- <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
             <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
+          </a><!-- End Messages Icon --> --}}
 
           {{-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
@@ -169,7 +165,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            {{-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> --}}
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 

@@ -63,7 +63,7 @@
                         
                         <div class="col-md-1 mb-2">
                             <label for="inputEmail5" class="form-label">Action</label><br>
-                            <a><i class="fa fa-trash text-danger"></i></a>
+                            <a href="{{ route('deleteMeal',$meal->id) }}"><i class="fa fa-trash text-danger"></i></a>
                         </div>
                         
                     </div> 
