@@ -32,7 +32,7 @@
         <div class="col-xxl-6 col-md-6">
           <div class="card info-card revenue-card">
             <div class="card-body">
-              <h5 class="card-title">Calories <span>| Consuming</span></h5>
+              <h5 class="card-title">Current Patients</span></h5>
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="bi bi-lightning-charge"></i>

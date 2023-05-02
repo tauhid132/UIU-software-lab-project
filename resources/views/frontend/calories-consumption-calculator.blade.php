@@ -16,7 +16,41 @@
                     <h3>Total Calories Consumption: {{ $total_calories }}</h3>
                 </div>
             </div>
+            @if ($breakfast < $cal_req * .25)
+            <div class="mb-3">
+                <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                    Please Add {{ $cal_req * .25 - $breakfast }} More Meal in Breakfast
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
+            @if ($lunch < $cal_req * .25)
+            <div class="mb-3">
+                <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                    Please Add {{ $cal_req * .25 - $lunch }} More Meal in Lunch
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
+            @if ($snack < $cal_req * .25)
+            <div class="mb-3">
+                <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                    Please Add {{ $cal_req * .25 - $snack }} More Meal in Snack
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
+            @if ($dinner < $cal_req * .25)
+            <div class="mb-3">
+                <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                    Please Add {{ $cal_req * .25 - $dinner }} More Meal in Dinner
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
+            
             <div class="card">
+                
                 
                 <div class="card-header">
                     <h4>Calories Calculator</h4>
@@ -49,7 +83,7 @@
                             <label for="inputName5" class="form-label">Unit</label>
                             <select class="form-select" id="unit" name="unit[]">
                                 <option {{ $meal->unit == 'g' ? 'selected' : '' }}  value="g" selected="">gm</option>
-                                <option {{ $meal->unit == 'pcs' ? 'selected' : '' }} value="pcs">Pcs</option>
+                                <option {{ $meal->unit == 'pcs' ? 'selected' : '' }} value="">Pcs</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-2">
@@ -140,7 +174,7 @@
                         '<label for="inputName5" class="form-label">Unit</label>'+
                         '<select class="form-select" name="unit[]" id="unit">'+
                             '<option value="g" selected="">gm</option>'+
-                            '<option value="pcs">Pcs</option>'+
+                            '<option value="">Pcs</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-md-2 mb-2">'+

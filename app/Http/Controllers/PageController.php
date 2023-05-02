@@ -16,10 +16,16 @@ class PageController extends Controller
     }
     
     public function viewCaloriesConsumptionCalculator(){
+        $user = User::find(Auth::user()->id);
         return view('frontend.calories-consumption-calculator',[
             'foods' => Food::all(),
             'meals' => Meal::where('user_id',Auth::user()->id)->get(),
-            'total_calories' => Meal::where('user_id',Auth::user()->id)->sum('calories')
+            'total_calories' => Meal::where('user_id',Auth::user()->id)->sum('calories'),
+            'cal_req' => $user->calories_required,
+            'breakfast' => Meal::where('user_id',Auth::user()->id)->where('meal', 'Breakfast')->sum('calories'),
+            'lunch' => Meal::where('user_id',Auth::user()->id)->where('meal', 'Lunch')->sum('calories'),
+            'snack' => Meal::where('user_id',Auth::user()->id)->where('meal', 'Snack')->sum('calories'),
+            'dinner' => Meal::where('user_id',Auth::user()->id)->where('meal', 'Dinner')->sum('calories'),
         ]);
     }
     public function getFoods(){
@@ -36,13 +42,14 @@ class PageController extends Controller
         $user->update([
             'calories_required' => $bmr
         ]);
+        return back();
         
     }
     
     public function calculateCalories(Request $request){
         $total_calories = 0;
         for($i=0; $i<sizeof($request->food); $i++){
-            $meal = Meal::where('meal', $request->meal[$i])->where('food',$request->food[$i])->where('unit',$request->unit[$i])->where('user_id',Auth::user()->id)->first();
+            $meal = Meal::where('meal', $request->meal[$i])->where('food',$request->food[$i])->where('unit',$request->unit[$i])->where('amount',$request->amount[$i])->where('user_id',Auth::user()->id)->first();
             if($meal == null){
                 $cal = $this->calCal($request->amount[$i],$request->unit[$i],$request->food[$i]);
                 $total_calories = $total_calories + $cal ;
